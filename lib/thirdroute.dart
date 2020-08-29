@@ -16,7 +16,7 @@ class _ThirdRouteState extends State<ThirdRoute> {
   Items item2 = new Items(id: 2, title: "Nature", img: "assets/Imges/17.png");
   Items item3 =
       new Items(id: 3, title: "Architecture", img: "assets/Imges/18.png");
-  Items item4 = new Items(id: 4, title: "Art", img: "assets/Imges/19.png");
+  Items item4 = new Items(id: 4, title: "Design", img: "assets/Imges/19.png");
   Widget build(BuildContext context) {
     List<Items> myList = [item1, item2, item3, item4];
     var color = 0xff453658;
@@ -24,7 +24,7 @@ class _ThirdRouteState extends State<ThirdRoute> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.teal,
-          elevation: 0,
+          elevation: 10.0,
           title: Text(
             'Applications',
             style: TextStyle(
@@ -116,23 +116,21 @@ class _ThirdRouteState extends State<ThirdRoute> {
 
 class DataSearch extends SearchDelegate<String> {
   final dp = [
-    "Architectire",
     "Logos",
-    "Art",
     "Nature",
+    "Architectire",
+    "Design",
   ];
 
   final pq = [
-    "Architectire",
     "Logos",
-    "Art",
-    "Nature",
+    "Design",
   ];
 
   Items item1 = new Items(id: 1, title: "Logos");
   Items item2 = new Items(id: 2, title: "Nature");
   Items item3 = new Items(id: 3, title: "Architecture");
-  Items item4 = new Items(id: 4, title: "Art");
+  Items item4 = new Items(id: 4, title: "Design");
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -143,7 +141,7 @@ class DataSearch extends SearchDelegate<String> {
           print("hello");
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Route1()),
+            MaterialPageRoute(builder: (context) => ThirdRoute()),
           );
         },
       )
@@ -177,10 +175,10 @@ class DataSearch extends SearchDelegate<String> {
               context,
               MaterialPageRoute(
                   builder: (context) => index == 1
-                      ? Route1()
+                      ? Route4()
                       : (index == 2
-                          ? Route2()
-                          : (index == 3 ? Route3() : Route4()))),
+                          ? Route4()
+                          : (index == 3 ? Route4() : Route1()))),
             );
           }
           if (query[0] == 'L') {
@@ -189,11 +187,22 @@ class DataSearch extends SearchDelegate<String> {
               MaterialPageRoute(builder: (context) => Route1()),
             );
           }
-
+          if (query[0] == 'D') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Route4()),
+            );
+          }
+          if (query[0] == 'A') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Route3()),
+            );
+          }
           if (query[0] == 'N') {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Route1()),
+              MaterialPageRoute(builder: (context) => Route2()),
             );
           }
         },
